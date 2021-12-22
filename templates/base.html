@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ToDoX - login</title>
+    <meta name="description" content="ToDo App with Pico & HTMX.">
+    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
+    <link rel="canonical" href="https://picocss.com/examples/sign-in/">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="/" class="contrast" "><strong>ToDoX</strong></a></li>
+        </ul>
+        <ul>
+            <li><a href="#" class="contrast" data-theme-switcher="auto">Auto</a></li>
+            <li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
+            <li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
+            <li><a href="{% url 'logout' %}" role="button" class="contrast outline">Logout</a></li>
+        </ul>
+        
+    </nav><!-- ./ Nav -->
+
+    <!-- Main -->
+    <main class="container">
+        <article class="grid">
+            {% block content %}{% endblock %}
+        </article>
+    </main>
+    
+<!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container-fluid">
+        <small>Built with <a href="https://picocss.com" class="secondary">Pico</a> • Mady by sgazda
+    </footer><!-- ./ Footer -->
+
+    <!-- Minimal theme switcher -->
+    <script src="{% static 'js/minimal-theme-switcher.js' %}"></script>
+
+</body>
+
+</html>
