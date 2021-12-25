@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<article id="block" class="grid">
         <div>
-            <hgroup>{% if user.is_authenticated %}
+            <hgroup>
                 <h3>ToDoX</h3>
                 <h4>{{ user.get_username }}</h4>
-            {% endif %}
             </hgroup>
-            
+            {% include 'components/tasks.html' %}
         </div>
         <div>form</div>
+    </article>
 {% endblock %}

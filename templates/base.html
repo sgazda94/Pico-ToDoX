@@ -28,16 +28,16 @@
             <li><a href="#" class="contrast" data-theme-switcher="auto">Auto</a></li>
             <li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
             <li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'logout' %}" role="button" class="contrast outline">Logout</a></li>
+            {% endif %}
         </ul>
         
     </nav><!-- ./ Nav -->
 
     <!-- Main -->
     <main class="container">
-        <article class="grid">
             {% block content %}{% endblock %}
-        </article>
     </main>
     
 <!-- ./ Main -->
@@ -50,6 +50,18 @@
     <!-- Minimal theme switcher -->
     <script src="{% static 'js/minimal-theme-switcher.js' %}"></script>
 
+
+<!-- HTMX CDN -->
+<script src="https://unpkg.com/htmx.org@1.1.0"></script>
+
+<!-- CSRF request in the headers -->
+<script>
+    document.body.addEventListener('htmx:configRequest', (e) => {
+        e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
+
 </body>
+
 
 </html>
