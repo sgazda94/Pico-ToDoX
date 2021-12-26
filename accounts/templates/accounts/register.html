@@ -1,27 +1,56 @@
 {% extends 'base.html' %}
-
+{% block navbar %}
+{% include 'components/navbar.html'%}
+{% endblock %}
 {% block content %}
 
 <article id="block" class="grid">
-    <div id="col1">
-        <hgroup>
-            <h1>Sign in</h1>
-            <h2>ToDoX - ToDo App build with Pico.css & HTMX</h2>
-        </hgroup>
-        <form   hx-post="{% url 'register' %}"
-                hx-select="#block"
-                hx-target="#block"
-                hx-swap="outerHTML">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="contrast" ">Sign up</button>
-            </form>
-            {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-            {% endif %}
-        </div>
-        <div></div>
+	<div id="col1">
+		<hgroup>
+			<h1>Sign up</h1>
+			<h2>ToDoX - ToDo App build with Pico.css & HTMX</h2>
+		</hgroup>
+		<form
+			hx-post="{% url 'register' %}"
+			hx-select="#block"
+			hx-target="#block"
+			hx-swap="outerHTML"
+		>
+			{% csrf_token %}
+
+			<input
+				type="text"
+				name="username"
+				placeholder="Username"
+                hx-post="/check_username/"
+                hx-trigger="keyup changed delay:0.5s"
+                hx-target="#username-error"
+                hx-swap="innerHTML"
+                required
+			/>
+            <div id="username-error"><p>xxx</p></div>
+            
+			<input
+				type="password"
+				name="password1"
+				placeholder="Password1"
+				aria-label="Password1"
+				required
+			/>
+			<input
+				type="password"
+				name="password2"
+				placeholder="Password2"
+				aria-label="Password2"
+				required
+			/>
+			<button type="submit" class="contrast">Sign up</button>
+		</form>
+        
+		{% if form.errors %}
+		<p>Your username and password didn't match. Please try again.</p>
+		{% endif %}
+	</div>
+	<div></div>
 </article>
 {% endblock %}
-
-hx-post=" {% url 'login' %}" hx-select="#block" hx-target="#block" hx-swap="outerHTML"

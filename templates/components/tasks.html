@@ -1,9 +1,18 @@
-<ul>
-
-    {% for task in tasks %}
-    <li> {{task}} </li>
-    {% empty %}
-    <li> No items on your list yet </li>
-    {% endfor %}
+<ul id="tasks">
+    {% if errors %} {{errors}} {% endif %}
+	{% for task in tasks %}
+	<li>{{task}}</li>
+	{% empty %}
+	<li>No items on your list yet</li>
+	{% endfor %}
+    <form
+    hx-post="{% url 'index' %}"
+    hx-swap= "outerHTML"
+    hx-target = "#tasks"
+    >
+    {% csrf_token %}
+        {{ form }}
+        <button type="submit"> Add </button>
+    </form>
 
 </ul>

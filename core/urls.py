@@ -23,6 +23,10 @@ from django.contrib.auth import views as auth_views
 from accounts import views as accounts_views
 from todo import views as todo_views
 
+htmx_urlpatterns = [
+    path('check_username/', accounts_views.check_username, name='check-username')
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', accounts_views.register, name='register'),
@@ -50,3 +54,5 @@ urlpatterns = [
          name='password_reset_complete'),
     path('', todo_views.index, name='index'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += htmx_urlpatterns

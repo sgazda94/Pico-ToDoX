@@ -1,13 +1,19 @@
 <ul>
-    <li><a href="/" class="contrast" "><strong>ToDoX</strong></a></li>
-        </ul>
-        <ul>
-            <li><a href=" #" class="contrast" data-theme-switcher="auto">Auto</a></li>
-    <li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
-    <li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
-    {% if user.is_authenticated %}
-    <li id='logout' hx-swap-oob="true"><a href="{% url 'logout' %}" role="button" class="contrast outline">Logout</a></li>
-    {% else %}
-    <li id='logout'></li>
-    {% endif %}
+	<li>
+		<a href="/" class="contrast"><strong>ToDoX</strong></a>
+	</li>
+</ul>
+<ul>
+	<li><a href="#" class="contrast" data-theme-switcher="auto">Auto</a></li>
+	<li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
+	<li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
+	{% if user.is_authenticated %}
+	<li id="logout" hx-swap-oob="true">
+		<a href="{% url 'logout' %}" role="button" class="contrast outline"
+			>Logout</a
+		>
+	</li>
+	{% else %}
+	<li id="logout"></li>
+	{% endif %}
 </ul>
