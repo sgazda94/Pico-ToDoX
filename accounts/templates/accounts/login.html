@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
+
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock %}
+
+
 {% block content %}
+
 
 <article id="block" class="grid">
     <div id="col1">
@@ -12,6 +19,7 @@
                 hx-select="#block"
                 hx-target="#block"
                 hx-swap="outerHTML"
+                hx-push-url="/"
                 >
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username" aria-label="Login" autocomplete="username"

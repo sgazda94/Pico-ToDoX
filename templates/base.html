@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,47 +20,35 @@
 
 <body>
 
-    <!-- Nav -->
+
     <nav class="container-fluid">
-        <ul>
-            <li><a href="/" class="contrast" "><strong>ToDoX</strong></a></li>
-        </ul>
-        <ul>
-            <li><a href="#" class="contrast" data-theme-switcher="auto">Auto</a></li>
-            <li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
-            <li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}" role="button" class="contrast outline">Logout</a></li>
-            {% endif %}
-        </ul>
-        
-    </nav><!-- ./ Nav -->
+        {% block navbar %}{% endblock %}
+    </nav>
 
-    <!-- Main -->
+
     <main class="container">
-            {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </main>
-    
-<!-- ./ Main -->
 
-    <!-- Footer -->
+
+
     <footer class="container-fluid">
         <small>Built with <a href="https://picocss.com" class="secondary">Pico</a> • Mady by sgazda
     </footer><!-- ./ Footer -->
 
-    <!-- Minimal theme switcher -->
+
     <script src="{% static 'js/minimal-theme-switcher.js' %}"></script>
 
 
-<!-- HTMX CDN -->
-<script src="https://unpkg.com/htmx.org@1.1.0"></script>
+    <!-- HTMX CDN -->
+    <script src="https://unpkg.com/htmx.org@1.1.0"></script>
 
-<!-- CSRF request in the headers -->
-<script>
-    document.body.addEventListener('htmx:configRequest', (e) => {
-        e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-    })
-</script>
+    <!-- CSRF request in the headers -->
+    <script>
+        document.body.addEventListener('htmx:configRequest', (e) => {
+            e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script>
 
 </body>
 
