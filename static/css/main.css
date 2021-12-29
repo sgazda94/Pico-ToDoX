@@ -83,3 +83,14 @@ body > footer {
 	padding: 0px;
 }
 
+.pointer {
+	cursor: pointer;
+}
+
+.ul-no-points {
+	list-style: none;
+}
+
+.delete-button {
+	padding: 10px;
+}

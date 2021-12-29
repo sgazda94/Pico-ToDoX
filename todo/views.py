@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from .forms import TaskForm
 from .models import Task
 
@@ -54,3 +55,36 @@ def index(request):
                     "errors": errors,
                 },  # the posted form, since it didn't save
             )
+            
+@require_POST
+def complete(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if task.done == True:
+        task.done = False
+    else:
+        task.done = True
+    task.save()
+    tasks = Task.objects.filter(user=request.user)
+    # our tasks components needs a form, tasks, and errors to render
+    return render(
+        request,
+        "components/tasks.html",
+        {
+            "form": TaskForm(),
+            "tasks": tasks,
+            "errors": None,
+        },
+    )
+    
+def delete(request, task_id):
+    Task.objects.filter(id=task_id).delete()
+    tasks = Task.objects.filter(user=request.user)
+    return render(
+        request,
+        "components/tasks.html",
+        {
+            "form": TaskForm(),
+            "tasks": tasks,
+            "errors": None,
+        },
+    )

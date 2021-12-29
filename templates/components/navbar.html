@@ -1,19 +1,22 @@
 <ul>
-	<li>
-		<a href="/" class="contrast"><strong>ToDoX</strong></a>
-	</li>
+    <li>
+        <a hx-get="{% url 'index' %}" hx-trigger="click"
+                hx-select="#block"
+                hx-target="#block"
+                hx-swap="outerHTML"
+                hx-push-url="/"
+                class="contrast pointer" ><strong>ToDoX</strong></a>
+    </li>
 </ul>
 <ul>
-	<li><a href="#" class="contrast" data-theme-switcher="auto">Auto</a></li>
-	<li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
-	<li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
-	{% if user.is_authenticated %}
-	<li id="logout" hx-swap-oob="true">
-		<a href="{% url 'logout' %}" role="button" class="contrast outline"
-			>Logout</a
-		>
-	</li>
-	{% else %}
-	<li id="logout"></li>
-	{% endif %}
+    <li><a href="#" class="contrast" data-theme-switcher="auto">Auto</a></li>
+    <li><a href="#" class="contrast" data-theme-switcher="light">Light</a></li>
+    <li><a href="#" class="contrast" data-theme-switcher="dark">Dark</a></li>
+    {% if user.is_authenticated %}
+    <li id="logout" hx-swap-oob="true">
+        <a hx-get="{% url 'logout' %}" hx-trigger="click" hx-select="#block" hx-target="#block" hx-swap="outerHTML" hx-push-url="/login"  hx-confirm="Are you sure you wish to log out?" role="button" class="contrast outline">Logout</a>
+    </li>
+    {% else %}
+    <li id="logout" hx-swap-oob="true"></li>
+    {% endif %}
 </ul>

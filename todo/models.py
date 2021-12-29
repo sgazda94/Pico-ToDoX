@@ -7,6 +7,9 @@ class Task(models.Model):
     )
     name = models.CharField(max_length=250)
     done = models.BooleanField(default=False)
+    
+    class Meta:
+        ordering = ["name",]
 
     def __str__(self):
         return self.name

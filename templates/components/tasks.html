@@ -1,18 +1,33 @@
-<ul id="tasks">
+<ul class="ul-no-points" id="tasks" hx-swap="outerHTML" hx-target="#tasks">
+    {% for task in tasks %}
+    <!-- tasks are done needs a checked box, and crossed off name -->
+    {% if task.done %}
+        <li>
+        <input type="checkbox" id="checkbox-done-{{task.id}}" value="" checked="checked"
+            hx-post="{% url 'complete' task.id %}"  hx-trigger="click">
+        <label for="checkbox-done-{{task.id}}"><del> {{ task.name }} </del> </label>
+        <a href="#" role="button delete-button" class="close" hx-post="{% url 'delete' task.id %}">&times;</a>
+        
+    </li>
+    {% else %}
+    <li>
+        <input type="checkbox" id="checkbox-notdone-{{task.id}}" value="" hx-post="{% url 'complete' task.id %}"
+            hx-trigger="click">
+        <label for="checkbox-notdone-{{task.id}}">{{ task.name }} </label>
+        <a href="#" role="button delete-button" class="close" hx-post="{% url 'delete' task.id %}">&times;</a>
+    </li>
+    
+    {% endif %}
+    
+
+    {% empty %}
+    <li> No items on your list yet </li>
+    {% endfor %}
     {% if errors %} {{errors}} {% endif %}
-	{% for task in tasks %}
-	<li>{{task}}</li>
-	{% empty %}
-	<li>No items on your list yet</li>
-	{% endfor %}
-    <form
-    hx-post="{% url 'index' %}"
-    hx-swap= "outerHTML"
-    hx-target = "#tasks"
-    >
-    {% csrf_token %}
+    <form hx-post="{% url 'index' %}" hx-swap="outerHTML" hx-target="#tasks">
         {{ form }}
         <button type="submit"> Add </button>
     </form>
+
 
 </ul>
