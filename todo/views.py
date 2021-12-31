@@ -6,6 +6,7 @@ from .models import Task
 
 # Create your views here.
 
+
 @login_required(login_url='/login/')
 def index(request):
     if request.method == "GET":
@@ -33,7 +34,7 @@ def index(request):
 
             return render(
                 request,
-                "components/tasks.html",
+                "components/tasks_list.html",
                 {
                     "form": TaskForm(),
                     "tasks": tasks,
@@ -48,7 +49,7 @@ def index(request):
             # we would return only our tasks components with the old tasks, and the errors
             return render(
                 request,
-                "components/tasks.html",
+                "components/tasks_list.html",
                 {
                     "form": form,
                     "tasks": tasks,
@@ -68,7 +69,7 @@ def complete(request, task_id):
     # our tasks components needs a form, tasks, and errors to render
     return render(
         request,
-        "components/tasks.html",
+        "components/tasks_list.html",
         {
             "form": TaskForm(),
             "tasks": tasks,
@@ -76,12 +77,13 @@ def complete(request, task_id):
         },
     )
     
+@require_POST
 def delete(request, task_id):
     Task.objects.filter(id=task_id).delete()
     tasks = Task.objects.filter(user=request.user)
     return render(
         request,
-        "components/tasks.html",
+        "components/tasks_list.html",
         {
             "form": TaskForm(),
             "tasks": tasks,

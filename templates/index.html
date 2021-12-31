@@ -7,15 +7,18 @@
 
 {% block content %}
 <article id="block" class="grid">
-        <div>
+        <div id='col1'>
             <hgroup>
                 <h3>ToDoX</h3>
                 <h4>{{ user.get_username }}</h4>
             </hgroup>
-            
-            {% include 'components/tasks.html' %}
+            <ul class="ul-no-points" id="tasks" hx-swap="innerHTML" hx-target="#tasks">
+            {% include 'components/tasks_list.html' %}
+            </ul>
         
         </div>
-        <div></div>
+        <div id='col2'>
+            {% include 'components/tasks_form.html' %}
+        </div>
     </article>
 {% endblock %}

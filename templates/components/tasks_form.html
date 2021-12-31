@@ -1,0 +1,5 @@
+<form hx-post="{% url 'index' %}" hx-swap="innerHTML" hx-target="#tasks">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit"> Add </button>
+</form>

@@ -1,0 +1,30 @@
+{% csrf_token %}
+{% for task in tasks %}
+
+{% if task.done %}
+<li>
+
+    <input type="checkbox" id="checkbox-done-{{task.id}}" value="" checked="checked"
+        hx-post="{% url 'complete' task.id %}" hx-trigger="click">
+    <label for="checkbox-done-{{task.id}}"><del> {{ task.name }} </del> </label>
+
+    <a href="#" role="button" class="delete-button" hx-post="{% url 'delete' task.id %}">x </a>
+</li>
+{% else %}
+<li>
+
+    <input type="checkbox" id="checkbox-notdone-{{task.id}}" value="" hx-post="{% url 'complete' task.id %}"
+        hx-trigger="click">
+    <label for="checkbox-notdone-{{task.id}}">{{ task.name }} </label>
+
+    <a href="#" role="button" class="delete-button" hx-post="{% url 'delete' task.id %}">x</a>
+</li>
+
+{% endif %}
+
+
+{% empty %}
+<li> No items on your list yet </li>
+{% endfor %}
+
+{% if errors %} {{errors}} {% endif %}

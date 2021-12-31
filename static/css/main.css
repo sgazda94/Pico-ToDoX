@@ -88,9 +88,15 @@ body > footer {
 }
 
 .ul-no-points {
-	list-style: none;
+	list-style: circle;
 }
 
-.delete-button {
-	padding: 10px;
+ul li::marker{
+	content: none;
+}
+
+.delete-button[role="button"] {
+	padding: 0px 10px;
+	background-color: rgb(133, 75, 75);
+	--border-color:rgb(133, 75, 75);
 }
