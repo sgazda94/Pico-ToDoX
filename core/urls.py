@@ -24,7 +24,6 @@ from accounts import views as accounts_views
 from todo import views as todo_views
 
 htmx_urlpatterns = [
-    path('check_username/', accounts_views.check_username, name='check-username'),
     path("<int:task_id>/complete", todo_views.complete, name="complete"),
     path("<int:task_id>/delete", todo_views.delete, name="delete")
 ]
