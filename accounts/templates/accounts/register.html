@@ -41,7 +41,8 @@
 			/>
 			<button type="submit" class="contrast">Sign up</button>
 		</form>
-        
+						<a hx-get="{% url 'login' %}" hx-trigger="click" hx-select="#block" hx-target="#block" hx-swap="outerHTML"
+							hx-push-url="/login">Login</a>
 		{% if form.errors %}
 		<p>Your username and password didn't match. Please try again.</p>
 		{% endif %}
