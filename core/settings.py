@@ -1,5 +1,5 @@
 import django_on_heroku
-django_on_heroku.settings(locals())
+
 
 """
 Django settings for core project.
@@ -138,4 +138,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
