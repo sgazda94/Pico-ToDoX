@@ -1,4 +1,6 @@
-import django_heroku
+import django_on_heroku
+django_on_heroku.settings(locals())
+
 """
 Django settings for core project.
 
