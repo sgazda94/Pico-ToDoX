@@ -1,7 +1,7 @@
 # Pico-ToDoX
 Djagno ToDo app for testing HTMX
 
-Demo: [Link](https://github.com/sgazda94/Pico-ToDoX)
+Demo: [https://pico-todox.herokuapp.com/](https://pico-todox.herokuapp.com/)
 
 App mainly for [HTMX](https://htmx.org/) testing purpose + pico.css as little semantic HTML framework
 
